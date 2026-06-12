@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MartinTech</title>
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f0f4ff;
+  color: #0a1628;
+}
+
+/* ===== WELCOME PAGE ===== */
+
+#welcomePage {
+  height: 100vh;
+  background: #003580;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+#welcomePage h1 {
+  font-size: 55px;
+  color: white;
+  margin-bottom: 15px;
+}
+
+#welcomePage h1 span {
+  color: #FFB300;
+}
+
+#welcomePage p {
+  font-size: 18px;
+  color: #a8c4e8;
+  margin-bottom: 8px;
+}
+
+#welcomePage h3 {
+  font-size: 16px;
+  color: #c8d8f0;
+  font-weight: normal;
+  font-style: italic;
+  margin-bottom: 35px;
+}
+
+#enterBtn {
+  padding: 15px 45px;
+  background: #FFB300;
+  color: #003580;
+  border: none;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#enterBtn:hover {
+  background: #e6a100;
+}
+
+/* ===== LOADING SCREEN ===== */
+
+#loadingScreen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 20, 60, 0.93);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255,255,255,0.2);
+  border-top: 5px solid #FFB300;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+#loadingScreen p {
+  color: #a8c4e8;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* ===== MAIN WEBSITE ===== */
+
+#mainWebsite {
+  display: none;
+}
+
+/* ===== HEADER ===== */
+
+#mainHeader {
+  background: #003580;
+  text-align: center;
+  padding: 40px 20px;
+  border-bottom: 5px solid #FFB300;
+}
+
+#mainHeader h1 {
+  font-size: 50px;
+  color: white;
+}
+
+#mainHeader h1 span {
+  color: #FFB300;
+}
+
+#mainHeader h4 {
+  color: #a8c4e8;
+  font-weight: normal;
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+#mainHeader p {
+  color: #FFB300;
+  margin-top: 8px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ===== NAVIGATION ===== */
+
+#navbar {
+  background: #0057C8;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 5px 10px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+#navbar button {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: rgba(255,255,255,0.85);
+  padding: 14px 22px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#navbar button:hover {
+  color: white;
+  border-bottom: 3px solid #FFB300;
+  background: rgba(255,255,255,0.08);
+}
+
+/* ===== PAGE CONTENT AREA ===== */
+
+#pageContent {
+  max-width: 960px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* ===== ALL SECTIONS HIDDEN BY DEFAULT ===== */
+
+.section {
+  display: none;
+}
+
+/* ===== HOME SECTION ===== */
+
+#homeSection {
+  display: block;
+}
+
+#homeBanner {
+  background: #003580;
+  color: white;
+  border-radius: 12px;
+  padding: 40px 30px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#homeBanner h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+#homeBanner h2 span {
+  color: #FFB300;
+}
+
+#homeBanner p {
+  color: #c8d8f0;
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 680px;
+  margin: auto;
+}
+
+.cardRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.quickCard {
+  flex: 1;
+  min-width: 180px;
+  background: white;
+  border: 2px solid #E3ECFF;
+  border-radius: 10px;
+  padding: 25px 20px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,53,128,0.1);
+}
+
+.quickCard:hover {
+  border-color: #2196F3;
+  transform: translateY(-4px);
+}
+
+.quickCard .icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.quickCard h3 {
+  font-size: 14px;
+  color: #003580;
+  margin-bottom: 5px;
+}
+
+.quickCard p {
+  font-size: 12px;
+  color: #3A4D6B;
+}
+
+/* ===== ABOUT SECTION ===== */
+
+.aboutBox {
+  background: white;
+  border: 2px solid #E3ECFF;
+  border-radius: 10px;
+  padding: 30px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 14px rgba(0,53,128,0.1);
+}
+
+.aboutBox p {
+  color: #3A4D6B;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.aboutBox p strong {
+  color: #003580;
+}
+
+.infoRow {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid #E3ECFF;
+  font-size: 14px;
+}
+
+.infoRow .label {
+  font-weight: bold;
+  color: #003580;
+  min-width: 90px;
+}
+
+.infoRow .value {
+  color: #3A4D6B;
+}
+
+.cvFrame {
+  width: 100%;
+  height: 420px;
+  border: 2px solid #C5D5F0;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+/* ===== SKILLS SECTION ===== */
+
+.skillCard {
+  background: white;
+  border: 2px solid #E3ECFF;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 14px rgba(0,53,128,0.1);
+}
+
+.skillCard:hover {
+  transform: translateY(-3px);
+}
+
+.skillTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.skillEmoji {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.skillCard h3 {
+  font-size: 16px;
+  color: #003580;
+}
+
+.skillCard p {
+  font-size: 13px;
+  color: #3A4D6B;
+  margin-bottom: 10px;
+}
+
+.barBg {
+  height: 8px;
+  background: #E3ECFF;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 999px;
+}
+
+/* ===== PROJECTS SECTION ===== */
+
+.projectCard {
+  background: white;
+  border: 2px solid #E3ECFF;
+  border-left: 5px solid #0057C8;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 14px rgba(0,53,128,0.1);
+}
+
+.projectCard:hover {
+  border-left-color: #FFB300;
+}
+
+.projectCard h3 {
+  font-size: 18px;
+  color: #003580;
+  margin-bottom: 8px;
+}
+
+.projectCard p {
+  font-size: 14px;
+  color: #3A4D6B;
+  line-height: 1.7;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tag {
+  background: #E3ECFF;
+  color: #0057C8;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== CONTACT SECTION ===== */
+
+.contactCard {
+  background: white;
+  border: 2px solid #E3ECFF;
+  border-radius: 10px;
+  padding: 20px 25px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 4px 14px rgba(0,53,128,0.1);
+}
+
+.contactCard:hover {
+  border-color: #2196F3;
+  transform: translateY(-3px);
+}
+
+.contactIcon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.contactLabel {
+  font-size: 11px;
+  font-weight: bold;
+  color: #3A4D6B;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contactValue {
+  font-size: 15px;
+  color: #003580;
+  font-weight: bold;
+  margin-top: 3px;
+}
+
+.contactValue a {
+  color: #0057C8;
+  text-decoration: none;
+}
+
+.contactValue a:hover {
+  text-decoration: underline;
+}
+
+/* ===== BUTTONS ===== */
+
+.btnBlue {
+  background: #0057C8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+.btnBlue:hover {
+  background: #003580;
+}
+
+.btnGold {
+  background: #FFB300;
+  color: #003580;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+.btnGold:hover {
+  background: #e6a100;
+}
+
+/* ===== SECTION TITLE ===== */
+
+.sectionTitle {
+  font-size: 28px;
+  color: #003580;
+  border-bottom: 3px solid #FFB300;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+}
+
+/* ===== FOOTER ===== */
+
+#mainFooter {
+  background: #003580;
+  border-top: 4px solid #FFB300;
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: #a8c4e8;
+  margin-top: 40px;
+}
+
+#mainFooter strong {
+  color: #FFB300;
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ===================================
+     WELCOME PAGE
+=================================== -->
+
+<div id="welcomePage">
+
+  <h1>Welcome to <span>MartinTech</span></h1>
+  <p>Innovation &bull; Technology &bull; Web Development</p>
+  <h3>A platform where ideas meet opportunities.</h3>
+  <h3>Built by Martin Musau &mdash; Technical University of Mombasa</h3>
+  <br>
+  <button id="enterBtn" onclick="openSite()">Click To Enter Portfolio &rsaquo;</button>
+
+</div>
+
+
+<!-- ===================================
+     LOADING SCREEN
+=================================== -->
+
+<div id="loadingScreen">
+  <div class="spinner"></div>
+  <p>Loading MartinTech...</p>
+</div>
+
+
+<!-- ===================================
+     MAIN WEBSITE
+=================================== -->
+
+<div id="mainWebsite">
+
+
+  <!-- HEADER -->
+  <div id="mainHeader">
+    <h1>Martin<span>Tech</span></h1>
+    <h4>Martin Musau &mdash; BMCS/020J/2024 @ Technical University of Mombasa</h4>
+    <p>Professional Portfolio</p>
+  </div>
+
+
+  <!-- NAVIGATION -->
+  <div id="navbar">
+    <button onclick="showSection('homeSection')">Home</button>
+    <button onclick="showSection('aboutSection')">About</button>
+    <button onclick="showSection('skillsSection')">My Skills</button>
+    <button onclick="showSection('projectsSection')">Projects</button>
+    <button onclick="showSection('contactSection')">Contact</button>
+  </div>
+
+
+  <!-- PAGE CONTENT -->
+  <div id="pageContent">
+
+
+    <!-- HOME -->
+    <div id="homeSection" class="section">
+
+      <div id="homeBanner">
+        <h2>Welcome to <span>MartinTech</span></h2>
+        <p>
+          I am a forward-thinking technologist and software developer dedicated to crafting innovative
+          solutions. This portfolio showcases my technical skills, projects, and achievements.
+        </p>
+      </div>
+
+      <div class="cardRow">
+
+        <div class="quickCard" onclick="showSection('aboutSection')">
+          <div class="icon">👤</div>
+          <h3>About Me</h3>
+          <p>Who I am and my background</p>
+        </div>
+
+        <div class="quickCard" onclick="showSection('skillsSection')">
+          <div class="icon">⚙️</div>
+          <h3>My Skills</h3>
+          <p>Technologies I work with</p>
+        </div>
+
+        <div class="quickCard" onclick="showSection('projectsSection')">
+          <div class="icon">🗂️</div>
+          <h3>Projects</h3>
+          <p>Things I have built</p>
+        </div>
+
+        <div class="quickCard" onclick="showSection('contactSection')">
+          <div class="icon">✉️</div>
+          <h3>Contact</h3>
+          <p>Let's work together</p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ABOUT -->
+    <div id="aboutSection" class="section">
+
+      <h2 class="sectionTitle">About Me</h2>
+
+      <div class="aboutBox">
+        <p>My name is <strong>Martin Musau</strong>, a student in Bachelor Of Science in Mathematics and Computer Science from the <strong>Technical University of Mombasa</strong>.</p>
+        <p>I am a passionate technology student and developer committed to high-quality coding and system security. I am eager to contribute to impactful projects.</p>
+
+        <div class="infoRow">
+          <span class="label">Name</span>
+          <span class="value">Martin Musau</span>
+        </div>
+        <div class="infoRow">
+          <span class="label">University</span>
+          <span class="value">Technical University of Mombasa</span>
+        </div>
+        <div class="infoRow">
+          <span class="label">Location</span>
+          <span class="value">Mombasa, Kenya</span>
+        </div>
+        <div class="infoRow">
+          <span class="label">Email</span>
+          <span class="value"><a href="mailto:musaumartinmutisya100@gmail.com">musaumartinmutisya100@gmail.com</a></span>
+        </div>
+
+        <a href="Martin_CV.pdf" download class="btnGold">&#11015; Download CV</a>
+        <button class="btnBlue" onclick="showSection('contactSection')">Contact Me</button>
+
+      </div>
+
+      <div class="aboutBox">
+        <strong style="color:#003580;">My CV Preview</strong>
+        <iframe class="cvFrame" src="Martin_CV.pdf" title="Martin CV"></iframe>
+      </div>
+
+    </div>
+
+
+    <!-- SKILLS -->
+    <div id="skillsSection" class="section">
+
+      <h2 class="sectionTitle">My Skills</h2>
+
+      <div class="skillCard">
+        <div class="skillTop">
+          <div class="skillEmoji" style="background:#E8F5E9;">🌐</div>
+          <h3>HTML</h3>
+        </div>
+        <p>Structure and content of webpages — the foundation of every website.</p>
+        <div class="barBg">
+          <div class="barFill" style="width:85%; background:#00897B;"></div>
+        </div>
+      </div>
+
+      <div class="skillCard">
+        <div class="skillTop">
+          <div class="skillEmoji" style="background:#E3F2FD;">🎨</div>
+          <h3>CSS</h3>
+        </div>
+        <p>Colors, layouts, and designs that make websites look great on any screen.</p>
+        <div class="barBg">
+          <div class="barFill" style="width:80%; background:#1565C0;"></div>
+        </div>
+      </div>
+
+      <div class="skillCard">
+        <div class="skillTop">
+          <div class="skillEmoji" style="background:#EDE7F6;">⚡</div>
+          <h3>JavaScript</h3>
+        </div>
+        <p>Makes webpages interactive and dynamic.</p>
+        <div class="barBg">
+          <div class="barFill" style="width:70%; background:#6A1B9A;"></div>
+        </div>
+      </div>
+
+      <div class="skillCard">
+        <div class="skillTop">
+          <div class="skillEmoji" style="background:#FFF3E0;">🔧</div>
+          <h3>C Programming</h3>
+        </div>
+        <p>Software development and problem solving at a low level.</p>
+        <div class="barBg">
+          <div class="barFill" style="width:75%; background:#E65100;"></div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- PROJECTS -->
+    <div id="projectsSection" class="section">
+
+      <h2 class="sectionTitle">My Projects</h2>
+
+      <div class="projectCard">
+        <h3>Portfolio Website</h3>
+        <p>A personal website to showcase my skills, projects, and achievements to potential employers.</p>
+        <div class="tagRow">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="projectCard">
+        <h3>Calculator Project</h3>
+        <p>A simple calculator that performs all standard arithmetic operations with a clean interface.</p>
+        <div class="tagRow">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="projectCard">
+        <h3>Student Record System</h3>
+        <p>An application to manage student records and information, with data input and search features.</p>
+        <div class="tagRow">
+          <span class="tag">C Programming</span>
+          <span class="tag">File I/O</span>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- CONTACT -->
+    <div id="contactSection" class="section">
+
+      <h2 class="sectionTitle">Get in Touch</h2>
+      <p style="color:#3A4D6B; margin-bottom:20px;">Feel free to reach out for collaboration, projects, internships, or opportunities.</p>
+
+      <div class="contactCard">
+        <div class="contactIcon" style="background:#E3F2FD;">✉️</div>
+        <div>
+          <div class="contactLabel">Email</div>
+          <div class="contactValue"><a href="mailto:musaumartinmutisya100@gmail.com">musaumartinmutisya100@gmail.com</a></div>
+        </div>
+      </div>
+
+      <div class="contactCard">
+        <div class="contactIcon" style="background:#E8F5E9;">📱</div>
+        <div>
+          <div class="contactLabel">Phone</div>
+          <div class="contactValue">+254 723 238 011</div>
+        </div>
+      </div>
+
+      <div class="contactCard">
+        <div class="contactIcon" style="background:#FFF8E1;">📞</div>
+        <div>
+          <div class="contactLabel">Alternative Phone</div>
+          <div class="contactValue">+254 733 311 101</div>
+        </div>
+      </div>
+
+      <div class="contactCard">
+        <div class="contactIcon" style="background:#EDE7F6;">💼</div>
+        <div>
+          <div class="contactLabel">LinkedIn</div>
+          <div class="contactValue"><a href="https://www.linkedin.com/in/mutisya-martin-323999405" target="_blank">View LinkedIn Profile</a></div>
+        </div>
+      </div>
+
+      <div class="contactCard">
+        <div class="contactIcon" style="background:#FFEBEE;">📍</div>
+        <div>
+          <div class="contactLabel">Location</div>
+          <div class="contactValue">Mombasa, Kenya</div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div><!-- end pageContent -->
+
+
+  <!-- FOOTER -->
+  <div id="mainFooter">
+    <p>&copy; 2026 <strong>MartinTech</strong> &mdash; Martin Musau &mdash; All Rights Reserved</p>
+  </div>
+
+
+</div><!-- end mainWebsite -->
+
+
+<!-- ===================================
+     JAVASCRIPT
+=================================== -->
+
+<script>
+
+/* --- OPEN SITE BUTTON --- */
+function openSite() {
+
+  /* Step 1: Show the loading spinner */
+  document.getElementById("loadingScreen").style.display = "flex";
+
+  /* Step 2: After 2 seconds, hide loading + welcome, show main site */
+  setTimeout(function() {
+
+    document.getElementById("loadingScreen").style.display = "none";
+    document.getElementById("welcomePage").style.display = "none";
+    document.getElementById("mainWebsite").style.display = "block";
+
+  }, 2000);
+
+}
+
+/* --- SHOW A SECTION --- */
+function showSection(sectionId) {
+
+  /* Hide ALL sections first */
+  var allSections = document.getElementsByClassName("section");
+  for (var i = 0; i < allSections.length; i++) {
+    allSections[i].style.display = "none";
+  }
+
+  /* Show only the one we want */
+  document.getElementById(sectionId).style.display = "block";
+
+  /* Scroll to top */
+  window.scrollTo(0, 0);
+
+}
+
+/* --- SHOW HOME SECTION BY DEFAULT --- */
+document.getElementById("homeSection").style.display = "block";
+
+</script>
+
+
+</body>
+</html>
