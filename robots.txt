@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://musaumartinmutisya100-crypto.github.io/MartinTech-Portfolio-/sitemap.xml
